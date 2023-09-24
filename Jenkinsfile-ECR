@@ -98,6 +98,38 @@ pipeline {
 
         }
 
+        stage('Docker Image Scan: Trivy'){
+          when{expression {params.action == 'create'}}
+            steps{
+                script{
+
+                    dockerimageScan("${params.aws_acc_id}","${params.region}","${params.ecr_name_repo}")
+            }
+
+        }
+
+        stage('Docker Image push: ECR'){
+          when{expression {params.action == 'create'}}
+            steps{
+                script{
+
+                    dockerPush("${params.aws_acc_id}","${params.region}","${params.ecr_name_repo}")
+                }
+            }
+
+        }
+
+        stage('Docker Image ECR'){
+          when{expression {params.action == 'create'}}
+            steps{
+                script{
+
+                    dockerImageCleanup("${params.aws_acc_id}","${params.region}","${params.ecr_name_repo}")
+                }
+            }
+
+        }
+
         
     }
 }
