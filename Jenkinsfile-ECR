@@ -170,7 +170,7 @@ pipeline {
                 }
             }
         } 
-/*
+
         stage('Deployment on EKS Cluster'){
             when { expression {  params.action == 'create' } }
             steps{
@@ -194,7 +194,7 @@ pipeline {
                 }
             }
         }
-*/
+
 
 
     }
