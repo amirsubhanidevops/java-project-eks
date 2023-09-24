@@ -83,56 +83,8 @@ pipeline {
                     mavenBuild()
                 }
             }
-
-        }
-
-        stage('Docker Image Build: Docker'){
-          when{expression {params.action == 'create'}}
-            steps{
-                script{
-
-                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                }
-            }
-
-        }
-
-        stage('Docker Image Scan: Trivy'){
-          when{expression {params.action == 'create'}}
-            steps{
-                script{
-
-                    dockerimageScan("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                }
-            }
-
-        }
-
-        stage('Docker Image push: Docker'){
-          when{expression {params.action == 'create'}}
-            steps{
-                script{
-
-                    dockerPush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                }
-            }
-
-        }
-
-        stage('Docker Image cleanup'){
-          when{expression {params.action == 'create'}}
-            steps{
-                script{
-
-                    dockerImageCleanup("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                }
-            }
-
-        }
-
-
-
+     
+           
+        }  
     }
-
-
 }
