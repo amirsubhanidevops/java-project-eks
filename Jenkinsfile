@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -7,7 +8,10 @@ pipeline {
 
             steps{
                 script{
-                    git branch: 'main', url: 'https://github.com/amirsubhanidevops/java-project-eks.git'
+                    gitCheckout(
+                        branch: "main"
+                        url: "https://github.com/amirsubhanidevops/java-project-eks.git"
+                    )
                 }
             }
 
