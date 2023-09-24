@@ -11,7 +11,7 @@ pipeline {
                 script{
 
                     gitCheckout(
-                        branch: "main"
+                        branch: "main",
                         url: "https://github.com/amirsubhanidevops/java-project-eks.git"
                     )
                 }
