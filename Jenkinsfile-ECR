@@ -104,6 +104,7 @@ pipeline {
                 script{
 
                     dockerimageScan("${params.aws_acc_id}","${params.region}","${params.ecr_name_repo}")
+                }
             }
 
         }
@@ -127,8 +128,11 @@ pipeline {
                     dockerImageCleanup("${params.aws_acc_id}","${params.region}","${params.ecr_name_repo}")
                 }
             }
-
+        
+        
         }
 
+
     }
+    
 }
