@@ -60,13 +60,24 @@ pipeline {
 
         }
 
-         stage('Code Quality gate status check : Sonarqube'){
+        stage('Code Quality gate status check : Sonarqube'){
           when{expression {params.action == 'create'}}
             steps{
                 script{
 
                 def SonarqubecredentialsId = 'sonarqube-api'
                 staticCodeAnalysis(SonarqubecredentialsId)
+                }
+            }
+
+        }
+
+        stage('MVN Build: Maven'){
+          when{expression {params.action == 'create'}}
+            steps{
+                script{
+
+                    mavenBuild()
                 }
             }
 
